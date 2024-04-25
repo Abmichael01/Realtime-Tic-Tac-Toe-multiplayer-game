@@ -1,1 +1,1 @@
-web: gunicorn recruitIT.wsgi:application --log-file -
+web: gunicorn tic_tac_toe.wsgi:application --log-file -
