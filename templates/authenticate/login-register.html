@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Lobby
+{% endblock title %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/login-register.css' %}">
+<div class="container">
+    <h2>Tic Tac Toe</h2>
+
+    <form action="" method="POST">
+      {% if messages %}
+      <ul class="messages" >
+          {% for message in messages %}
+          <li {% if message.tags %} class="message message-{{ message.tags }}"{% endif %}>
+              <p>{{ message }}</p>
+              <i class="fa-solid fa-xmark close-message"></i>
+          </li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% csrf_token %}
+        {% if page == "login" %}
+        <h3>Login</h3>
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <button>Login</button>
+        <a href="{% url 'register' %}">New here? Register</a>
+        {% endif %}
+
+        {% if page == "register" %}
+        <h3>Register</h3>
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password1" placeholder="Password">
+        <input type="password" name="password2" placeholder="Confirm Password">
+        <button>Register</button>
+        <a href="{% url 'login' %}">An old user? Login</a>
+        {% endif %}
+
+    </form>
+
+</div>
+{% endblock content %}

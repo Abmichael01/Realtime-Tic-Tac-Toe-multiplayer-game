@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Lobby
+{% endblock title %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/game_room.css' %}">
+<div class="container">
+    <div class="room-code">
+        <p>Room Code: {{ room.room_code }}</p>
+        <button>Copy</button>
+    </div>
+
+    <div class="game-container" data-id="{{room.id}}">
+        <div class="players">
+            <div class="player">
+                <div class="player-score">
+                    <p> {{room.player1}} </p>
+                    <!-- <p> 0 </p> -->
+                </div>
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+
+            <div class="player">
+                <div class="player-score">
+                    <p class="player2"> {{room.player2}} </p>
+                    <!-- <p> 0 </p> -->
+                </div>
+                <i class="fa-solid fa-o"></i>
+            </div>
+        </div>
+
+        <div class="game">
+            <div class="game-message"></div>
+            <div class="game-board">
+                <div class="box1 box" data-box="1"></div>
+                <div class="box2 box" data-box="2"></div>
+                <div class="box3 box" data-box="3"></div>
+                <div class="box4 box" data-box="4"></div>
+                <div class="box5 box" data-box="5"></div>
+                <div class="box6 box" data-box="6"></div>
+                <div class="box7 box" data-box="7"></div>
+                <div class="box8 box" data-box="8"></div>
+                <div class="box9 box" data-box="9"></div>
+                <div class="game-not-started">
+                    <i class="fa-solid fa-spinner waiting"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <a href="{% url 'lobby' %}" class="leave-room">
+            <i class="fa-solid fa-sign-out"></i>
+            <p>Leave room</p>
+        </a>
+    </div>
+
+</div>
+{% endblock content %}

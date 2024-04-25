@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Lobby
+{% endblock title %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/join-room.css' %}">
+<div class="container">
+    <h2>Tic Tac Toe</h2>
+
+    <form action="" method="POST">
+      {% if messages %}
+      <ul class="messages" >
+          {% for message in messages %}
+          <li {% if message.tags %} class="message message-{{ message.tags }}"{% endif %}>
+              <p>{{ message }}</p>
+              <i class="fa-solid fa-xmark close-message"></i>
+          </li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% csrf_token %}
+        <h3>Join Room</h3>
+        <input type="text" name="room-code" maxlength="6" placeholder="Enter Room Code">
+        <button>Join</button>
+        <a href="{% url 'lobby' %}">Back to lobby</a>
+
+    </form>
+
+</div>
+{% endblock content %}

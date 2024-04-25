@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Lobby
+{% endblock title %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/lobby.css' %}">
+<div class="container">
+    <h2>Tic Tac Toe</h2>
+
+    <div class="user-info">
+        <p>{{request.user}}</p>
+        <a href="">Profile</a>
+    </div>
+    <button href="" class="button">
+        <i class="fa-solid fa-gamepad"></i>
+        <span>Play with a random player</span>
+    </button>
+
+    <a href="{% url 'create-room' %}" class="link">
+        <button href="" class="button">
+            <i class="fa-solid fa-gamepad"></i>
+            <span>Create game room</span>
+        </button>
+    </a>
+
+    <a href="{% url 'join-room' %}">
+        <button href="" class="button">
+            <i class="fa-solid fa-gamepad"></i>
+            <span>Join game room</span>
+        </button>
+    </a>
+
+    <button href="" class="button">
+        <i class="fa-solid fa-users-between-lines"></i>
+        <span>Leaderboard</span>
+    </button>
+
+    <a href="{% url 'logout' %}" class="logout-link">
+        <button class="button">
+            <i class="fa-solid fa-sign-out"></i>
+            <span>Logout</span>
+        </button>
+    </a>
+
+</div>
+{% endblock content %}

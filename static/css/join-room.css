@@ -1,0 +1,122 @@
+*{
+    color: #fff;
+}
+
+.container{
+    border: 1px solid #394854;
+    padding: 40px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 450px;
+    box-shadow: 0px 0px 10px #394854;
+}
+
+h2{
+    color: #fff;
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-shadow: 0px 0px 10px #394854;
+    
+}
+
+.container form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container form h3{
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.container form input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #394854;
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    font-size: 18px;
+}
+
+.container form input:focus{
+    box-shadow: 0px 0px 5px #394854;
+}
+
+.container form button{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #394854;
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    font-size: 18px;
+    background: #394854;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.container form button:hover{
+    background: #2d3a45;
+}
+
+.container form a{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #394854;
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: .3s;
+    text-align: center;
+}
+
+.message{
+    padding: 15px 10px;
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    color: #2d3a45;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.message p{
+    font-size: 18px;
+    font-weight: 650;
+}
+
+.message-error{
+    border-left: 5px solid #ee3939;
+    
+}
+
+.message-error p{
+    color: #ee3939;
+}
+
+.message-success{
+    border-left: 5px solid #39ee42;
+    color: #39ee42;
+}
+
+.message-success p{
+    color: #39ee42;
+}
+
+.message-info{
+    border-left: 5px solid #eeac39;
+    color: #eeac39;
+}
+
+.message-info p{
+    color: #eeac39;
+}
+
