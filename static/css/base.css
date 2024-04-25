@@ -16,3 +16,13 @@ body{
     min-height: 100vh;
     padding: 50px;
 }
+
+@media screen and (max-width:560px ) {
+    .container{
+        width: 100%;
+    }
+
+    body{
+        padding: 50px 10px;
+    }
+}
