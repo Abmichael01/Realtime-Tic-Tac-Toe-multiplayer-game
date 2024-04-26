@@ -69,7 +69,7 @@ setInterval(()=>{
 
         }
     })
-}, 500)
+}, 1500)
 
 
 const playGame = (box)=>{
