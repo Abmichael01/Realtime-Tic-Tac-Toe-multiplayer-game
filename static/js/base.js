@@ -99,6 +99,10 @@ const playGame = (box)=>{
 boxes.forEach(box=>{
     console.log(box.textContent)
     box.onclick = ()=>{
+        boxes.forEach(box=>{
+            console.log(box.textContent)
+            box.onclick = ()=>{}
+        })
         playGame(box)
     }
 })
