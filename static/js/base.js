@@ -99,7 +99,7 @@ const playGame = (box)=>{
 boxes.forEach(box=>{
     console.log(box.textContent)
     box.onclick = ()=>{
-        box.onclick = null
+        gameNotStarted.style.display = "flex"
         playGame(box)
     }
 })
