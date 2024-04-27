@@ -74,6 +74,7 @@ setInterval(()=>{
 
 const playGame = (box)=>{
     if(box.textContent == ""){
+        gameNotStarted.style.display = "flex"
         boxNumber = box.getAttribute("data-box")
         roomId = gameRoom.getAttribute("data-id")
         formData = new FormData()

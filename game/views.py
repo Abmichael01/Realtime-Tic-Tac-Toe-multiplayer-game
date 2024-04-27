@@ -156,8 +156,20 @@ def play_game(request):
                 "next_player": next_player,
             })
 
-        
-        
+def check_x_wins(box1, box2, box3):
+    if box1 == "X" and box2 == "X" and box3 == "X":
+        return True
+
+def check_o_wins(box1, box2, box3):
+    if box1 == "O" and box2 == "O" and box3 == "O":
+        return True
+
+def check_for_wins(alpha, states):
+    for state in states:
+        if state[0] == alpha and state[1] == alpha and state[2] == alpha:
+            return True
+        else:
+            return False
 
 def update_game(request):
     if request.method == "POST":
@@ -216,6 +228,74 @@ def update_game(request):
         else:
             box9 = game.box9    
 
+        # check game wins
+        win_states = [
+            [game.box1, game.box2, game.box3],  # Row 1
+            [game.box4, game.box5, game.box6],  # Row 2
+            [game.box7, game.box8, game.box9],  # Row 3
+            [game.box1, game.box4, game.box7],  # Column 1
+            [game.box2, game.box5, game.box8],  # Column 2
+            [game.box3, game.box6, game.box9],  # Column 3
+            [game.box1, game.box5, game.box9],  # Diagonal 1
+            [game.box3, game.box5, game.box7],  # Diagonal 2
+        ]
+
+        win_states = [
+            [box1, box2, box3],  # Row 1
+            [box4, box5, box6],  # Row 2
+            [box7, box8, box9],  # Row 3
+            [box1, box4, box7],  # Column 1
+            [box2, box5, box8],  # Column 2
+            [box3, box6, box9],  # Column 3
+            [box1, box5, box9],  # Diagonal 1
+            [box3, box5, box7],  # Diagonal 2
+        ]
+
+
+        x_win = False
+        o_win = False
+
+        for state in win_states:
+            if state[0] == "X" and state[1] == "X" and state[2] == "X":
+                x_win = True
+
+        for state in win_states:
+            if state[0] == "O" and state[1] == "O" and state[2] == "O":
+                o_win = True
+        
+        print(x_win)
+        print(o_win)
+        if x_win:
+            return JsonResponse({
+                "started": True,
+                "message": "it's a X win",
+                "box1": box1,
+                "box2": box2,
+                "box3": box3,
+                "box4": box4,
+                "box5": box5,
+                "box6": box6,
+                "box7": box7,
+                "box8": box8,
+                "box9": box9,
+                "player2": str(game_room.player2),
+            })
+        
+        if o_win:
+            return JsonResponse({
+                "started": True,
+                "message": "it's a O win",
+                "box1": box1,
+                "box2": box2,
+                "box3": box3,
+                "box4": box4,
+                "box5": box5,
+                "box6": box6,
+                "box7": box7,
+                "box8": box8,
+                "box9": box9,
+                "player2": str(game_room.player2),
+            })
 
         if game.next_player == request.user:
             next_player = True
