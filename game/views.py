@@ -266,9 +266,14 @@ def update_game(request):
         print(x_win)
         print(o_win)
         if x_win:
+            if request.user == game_room.player1:
+                won_msg = "You won the game"
+            else:
+                won_msg = f"{str(game_room.player1)} won the game"
             return JsonResponse({
                 "started": True,
-                "message": "it's a X win",
+                "message": won_msg,
+                "won": True,
                 "box1": box1,
                 "box2": box2,
                 "box3": box3,
@@ -282,9 +287,31 @@ def update_game(request):
             })
         
         if o_win:
+            if request.user == game_room.player2:
+                won_msg = "You won the game"
+            else:
+                won_msg = f"{str(game_room.player1)} won the game"
             return JsonResponse({
                 "started": True,
-                "message": "it's a O win",
+                "message": won_msg,
+                "won": True,
+                "box1": box1,
+                "box2": box2,
+                "box3": box3,
+                "box4": box4,
+                "box5": box5,
+                "box6": box6,
+                "box7": box7,
+                "box8": box8,
+                "box9": box9,
+                "player2": str(game_room.player2),
+            })
+        
+        if len(box1) > 0 and len(box2) > 0 and len(box3) > 0 and len(box4) > 0 and len(box5) > 0 and len(box6) > 0 and len(box7) > 0 and len(box8) > 0 and len(box9) > 0:
+            return JsonResponse({
+                "started": True,
+                "message": "The game was a draw",
+                "won": True,
                 "box1": box1,
                 "box2": box2,
                 "box3": box3,

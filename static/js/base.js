@@ -17,13 +17,15 @@ const box9 = document.querySelector(".box9")
 const gameNotStarted = document.querySelector(".game-not-started")
 const startButt = document.querySelector(".game-not-started button")
 const player2 = document.querySelector(".player2")
+const playerWon = document.querySelector(".player-won")
+const winText = document.querySelector(".win-text")
 
 
 setInterval(()=>{
     roomId = gameRoom.getAttribute("data-id")
     formData = new FormData()
     formData.append("id", roomId)
-
+    // playerWon.style.display = "flex"
     fetch("/update-game", {
         body: formData,
         method: "POST",
@@ -67,9 +69,14 @@ setInterval(()=>{
                 }
             }
 
+            if(data.won){
+                playerWon.style.display = "flex"
+                winText.textContent = data.message
+            }
+
         }
     })
-}, 1500)
+}, 1000)
 
 
 const playGame = (box)=>{
