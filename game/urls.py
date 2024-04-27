@@ -9,4 +9,5 @@ urlpatterns = [
     path("play-game", csrf_exempt(play_game), name="play-game"),
     path("join-room", join_room, name="join-room"),
     path("update-game", csrf_exempt(update_game), name="update-game"),
+    path("leaderboard", leaderboard, name="leaderboard"),
 ]

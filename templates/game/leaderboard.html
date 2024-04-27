@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Lobby
+{% endblock title %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/leaderboard.css' %}">
+<div class="container">
+    <h2>Tic Tac Toe</h2>
+
+    <div class="leaderboard">
+        <h3>Top Players</h3>
+
+        <div class="players">
+            {% for player in players %}
+            <div class="player">
+                <p> {{player.username}} </p>
+                <p> {{player.game_room_set.count}} games </p>
+                <p> {{player.win_set.count}} wins </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

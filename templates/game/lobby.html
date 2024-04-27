@@ -31,11 +31,14 @@
             <span>Join game room</span>
         </button>
     </a>
-
-    <button href="" class="button">
-        <i class="fa-solid fa-users-between-lines"></i>
-        <span>Leaderboard</span>
-    </button>
+    
+    <a href="{% url 'leaderboard' %}">
+        <button class="button">
+            <i class="fa-solid fa-users-between-lines"></i>
+            <span>Leaderboard</span>
+        </button>
+    </a>
+    
 
     <a href="{% url 'logout' %}" class="logout-link">
         <button class="button">

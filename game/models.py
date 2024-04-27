@@ -23,6 +23,13 @@ class Game(models.Model):
     box8 = models.CharField(max_length=1, null=True)
     box9 = models.CharField(max_length=1, null=True)
 
+class Win(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    player = models.ForeignKey(User, related_name="player", on_delete = models.CASCADE)
+    game_room = models.ForeignKey(GameRoom, related_name="win_game_room", on_delete=models.SET_NULL, null=True)
+    game = models.ForeignKey(Game, related_name="game", on_delete=models.SET_NULL, null=True)
+    
+
 
 
 

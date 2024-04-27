@@ -266,6 +266,12 @@ def update_game(request):
         print(x_win)
         print(o_win)
         if x_win:
+            win = Win.objects.create(
+                user = game_room.player1,
+                game_room = game_room,
+                game = game,
+            )
+            win.save()
             if request.user == game_room.player1:
                 won_msg = "You won the game"
             else:
@@ -287,6 +293,12 @@ def update_game(request):
             })
         
         if o_win:
+            win = Win.objects.create(
+                user = game_room.player2,
+                game_room = game_room,
+                game = game,
+            )
+            win.save()
             if request.user == game_room.player2:
                 won_msg = "You won the game"
             else:
@@ -362,3 +374,9 @@ def update_game(request):
             })
 
 
+def leaderboard(request):
+    players = User.objects.all()
+    
+    return render(request, "game/leaderboard.html", {
+        "players": players
+    })
