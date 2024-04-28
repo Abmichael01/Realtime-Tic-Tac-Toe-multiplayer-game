@@ -267,7 +267,7 @@ def update_game(request):
         print(o_win)
         if x_win:
             win = Win.objects.create(
-                user = game_room.player1,
+                player = game_room.player1,
                 game_room = game_room,
                 game = game,
             )
@@ -294,7 +294,7 @@ def update_game(request):
         
         if o_win:
             win = Win.objects.create(
-                user = game_room.player2,
+                player = game_room.player2,
                 game_room = game_room,
                 game = game,
             )
