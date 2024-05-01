@@ -29,6 +29,10 @@ def register(request):
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
 
+        if username == "" or password1 == "" or password2 == "":
+            messages.error(request, "Please fill in all fields")
+            return redirect("register")
+
         if User.objects.filter(username=username).exists():
                 messages.error(request, "Username is already taken")
                 return redirect("register")
