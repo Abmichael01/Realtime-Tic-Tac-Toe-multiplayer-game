@@ -16,7 +16,7 @@
             {% for player in players %}
             <div class="player">
                 <p> {{player.username}} </p>
-                <p> {{player.game_room_set.count}} games </p>
+                <p> {{player.gameroom_set.count}} games </p>
                 <p> {{player.win_set.count}} wins </p>
             </div>
             {% endfor %}
