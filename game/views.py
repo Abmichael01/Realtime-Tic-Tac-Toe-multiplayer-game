@@ -266,14 +266,15 @@ def update_game(request):
         print(x_win)
         print(o_win)
         if x_win:
-            win = Win.objects.create(
-                player = game_room.player1,
-                game_room = game_room,
-                game = game,
-            )
-            win.save()
+           
             if request.user == game_room.player1:
                 won_msg = "You won the game"
+                win = Win.objects.create(
+                    player = game_room.player1,
+                    game_room = game_room,
+                    game = game,
+                )
+                win.save()
             else:
                 won_msg = f"{str(game_room.player1)} won the game"
             return JsonResponse({
@@ -293,14 +294,15 @@ def update_game(request):
             })
         
         if o_win:
-            win = Win.objects.create(
-                player = game_room.player2,
-                game_room = game_room,
-                game = game,
-            )
-            win.save()
+            
             if request.user == game_room.player2:
                 won_msg = "You won the game"
+                win = Win.objects.create(
+                    player = game_room.player2,
+                    game_room = game_room,
+                    game = game,
+                )
+                win.save()
             else:
                 won_msg = f"{str(game_room.player1)} won the game"
             return JsonResponse({
