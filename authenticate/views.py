@@ -39,7 +39,10 @@ def register(request):
             form.save()
             messages.success(request, "You account has been created successfully")
         else:
-            error_message = form.errors.as_data().get("__all__")[0].message
+            if '__all__' in form.errors:
+                error_message = form.errors['__all__'][0].message
+            else:
+                error_message = "Form is invalid"
             messages.error(request, error_message)
             
             
