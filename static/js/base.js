@@ -21,7 +21,7 @@ const playerWon = document.querySelector(".player-won")
 const winText = document.querySelector(".win-text")
 
 
-setInterval(()=>{
+var updateInterval = setInterval(()=>{
     roomId = gameRoom.getAttribute("data-id")
     formData = new FormData()
     formData.append("id", roomId)
@@ -72,6 +72,7 @@ setInterval(()=>{
             if(data.won){
                 playerWon.style.display = "flex"
                 winText.textContent = data.message
+                clearInterval(updateInterval)
             }
 
         }
