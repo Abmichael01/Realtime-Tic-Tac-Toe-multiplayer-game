@@ -39,7 +39,9 @@ def register(request):
             form.save()
             messages.success(request, "You account has been created successfully")
         else:
-             messages.error(request, "Form is invalid")
+            error_message = form.errors.as_data().get("__all__")[0].message
+            messages.error(request, error_message)
+            
             
     return render(request, "authenticate/login-register.html", {
         "page": "register",
