@@ -141,6 +141,48 @@ def play_game(request):
                 game.next_player = game_room.player1
         game.save()
 
+        win_states = [
+            [game.box1, game.box2, game.box3],  # Row 1
+            [game.box4, game.box5, game.box6],  # Row 2
+            [game.box7, game.box8, game.box9],  # Row 3
+            [game.box1, game.box4, game.box7],  # Column 1
+            [game.box2, game.box5, game.box8],  # Column 2
+            [game.box3, game.box6, game.box9],  # Column 3
+            [game.box1, game.box5, game.box9],  # Diagonal 1
+            [game.box3, game.box5, game.box7],  # Diagonal 2
+        ]
+
+
+        x_win = False
+        o_win = False
+
+        for state in win_states:
+            if state[0] == "X" and state[1] == "X" and state[2] == "X":
+                x_win = True
+
+        for state in win_states:
+            if state[0] == "O" and state[1] == "O" and state[2] == "O":
+                o_win = True
+        
+        if x_win:
+            win, created = Win.objects.get_or_create(
+                    player = game_room.player1,
+                    game_room = game_room,
+                    game = game,
+                )
+                
+            if created:
+                win.save()
+        if o_win:
+            win, created = Win.objects.get_or_create(
+                    player = game_room.player2,
+                    game_room = game_room,
+                    game = game,
+                )
+                
+            if created:
+                win.save()
+
 
         if game.next_player == request.user:
             next_player = True
@@ -269,14 +311,7 @@ def update_game(request):
            
             if request.user == game_room.player1:
                 won_msg = "You won the game"
-                win, created = Win.objects.get_or_create(
-                    player = game_room.player1,
-                    game_room = game_room,
-                    game = game,
-                )
                 
-                if created:
-                    win.save()
             else:
                 won_msg = f"{str(game_room.player1)} won the game"
             return JsonResponse({
